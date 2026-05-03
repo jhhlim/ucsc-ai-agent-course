@@ -46,6 +46,6 @@ This github repo is for the course. It includes resources and examples.
 
 
 ### Notes
-git branch -M main
-git remote add origin git@github.com:hienluu/ucsc-ai-agent-course.git
-git push -u origin main
+- git branch -M main
+- git remote add origin git@github.com:hienluu/ucsc-ai-agent-course.git
+- git push -u origin main
