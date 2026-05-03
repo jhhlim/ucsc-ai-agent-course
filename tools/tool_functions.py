@@ -1,5 +1,6 @@
 import requests
 
+
 # Example tool functions for demonstration
 def get_weather(city: str) -> str:
     """Get weather for a city.
@@ -28,8 +29,14 @@ def calculate_sum(a: int, b: int) -> int:
     """
     return a + b
 
+
 def get_current_time() -> str:
-    """Get the current time."""
+    """Get the current time.
+    Args:
+       empty 
+    Returns:
+        The current time as a string
+    """
     from datetime import datetime
     return datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
 

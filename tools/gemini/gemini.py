@@ -160,35 +160,55 @@ def generate_with_tools(
     if not response.candidates or not response.candidates[0].content.parts:
         return "No response generated"
 
-    final_response = ""
+    # Collect all function calls and text from the initial response
+    function_calls = []
+    initial_text = ""
 
     for part in response.candidates[0].content.parts:
         if hasattr(part, 'text') and part.text:
-            final_response += part.text
+            initial_text += part.text
         elif hasattr(part, 'function_call'):
-            # Execute the tool call
-            tool_result = execute_tool_call(part.function_call, tool_functions)
+            function_calls.append(part.function_call)
 
-            # Generate follow-up response with tool result
-            follow_up_response = client.models.generate_content(
-                model=model,
-                contents=[
-                    prompt,
-                    response.candidates[0].content,
-                    types.Content(
-                        role="user",
-                        parts=[types.Part(text=f"Tool result: {tool_result}")]
-                    )
-                ],
-                config=types.GenerateContentConfig(tools=tools)
-            )
+    # If there are function calls, execute them all and generate follow-up
+    if function_calls:
+        # Execute all tool calls
+        tool_results = []
+        for tool_call in function_calls:
+            tool_result = execute_tool_call(tool_call, tool_functions)
+            tool_results.append(f"Tool result for {tool_call.name}: {tool_result}")
 
-            if follow_up_response.candidates and follow_up_response.candidates[0].content.parts:
-                for follow_part in follow_up_response.candidates[0].content.parts:
-                    if hasattr(follow_part, 'text') and follow_part.text:
-                        final_response += follow_part.text
+        # Combine all tool results
+        combined_results = "\n".join(tool_results)
 
-    return final_response
+        # Generate follow-up response with all tool results
+        follow_up_response = client.models.generate_content(
+            model=model,
+            contents=[
+                prompt,
+                types.Content(
+                    role="model",
+                    parts=[types.Part(text=initial_text)] if initial_text else []
+                ),
+                types.Content(
+                    role="user",
+                    parts=[types.Part(text=f"Tool results:\n{combined_results}")]
+                )
+            ],
+            config=types.GenerateContentConfig(tools=tools)
+        )
+
+        # Extract final response
+        final_response = initial_text  # Start with any initial text
+        if follow_up_response.candidates and follow_up_response.candidates[0].content.parts:
+            for part in follow_up_response.candidates[0].content.parts:
+                if hasattr(part, 'text') and part.text:
+                    final_response += part.text
+
+        return final_response
+    else:
+        # No function calls, return the initial response
+        return initial_text
 
 
 def local_tool_example(model: str, prompt: str = "What's the temperature in London?") -> None:
