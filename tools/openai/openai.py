@@ -14,7 +14,9 @@ from openai import OpenAI
 # Resources:
 # * https://platform.openai.com/docs/guides/function-calling
 # * https://github.com/openai/openai-python
-#
+# * https://github.com/openai/openai-responses-starter-app
+# * https://developers.openai.com/api/docs/guides/tools-web-search
+# * https://github.com/openai/openai-responses-starter-app
 
 
 def get_client() -> OpenAI:
@@ -100,7 +102,6 @@ def execute_tool_call(tool_name: str, tool_args: Dict[str, Any], tools: Dict[str
 
     func = tools[tool_name]
 
-    print(f">>> Executing tool: {tool_name} with args: {tool_args}")
     try:
         return func(**tool_args)
     except Exception as e:
@@ -139,10 +140,6 @@ def generate_with_tools(
     # Save function call outputs for subsequent requests
     messages += response.output
 
-    # Process the response
-    final_response = ""
-    
-
     # Check if there are tool calls
     for item in response.output:
         print(f"Processing response item: {item.type}")
@@ -150,7 +147,7 @@ def generate_with_tools(
             tool_name = item.name
             tool_args = json.loads(item.arguments)
             tool_result = execute_tool_call(tool_name, tool_args, tool_functions)
-
+            print(f"Tool result: {tool_result}")
             messages.append({
                 "type": "function_call_output",
                 "call_id": item.call_id,
@@ -248,6 +245,46 @@ def local_tool_auto_func_calling_example(model: str, prompt: str = "What's the t
         print(f"Unexpected error: {e}")
 
 
+def builtin_tool_example(model: str, prompt: str = "What's the latest news from OpenAI?") -> None:
+    print(">>> Running built-in tool example")
+    try:
+        # Initialize client
+        client = get_client()
+        print("✓ Connected to OpenAI")
+
+        response = client.responses.create(
+            model=model,
+            tools=[{
+                        "type": "web_search",
+                        "search_context_size": "low"
+                    },
+                   ],
+            input=prompt
+        )
+
+        print(response.output_text)
+
+        print(f"================ web_search_call ===============")
+        for item in response.output:
+            print(f"Processing response item: {item.type}")
+            if item.type == "web_search_call":
+                print(item)
+                print("---------------------------------------")
+            elif item.type == "message":
+                for content in item.content:
+                    for annotation in content.annotations:
+                        print(f"title: {annotation.title}")
+                        print(f"url: {annotation.url}")
+                        print("---------------------------------------")
+
+    
+    except ValueError as e:
+        print(f"Configuration error: {e}")
+        print("Make sure OPENAI_API_KEY is set in environment variables")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+
 def main():
     """Main function to demonstrate OpenAI tools functionality."""
     parser = argparse.ArgumentParser(description='Test OpenAI function calling')
@@ -255,7 +292,7 @@ def main():
                        default="What's the temperature in London?",
                        help='Prompt to send to the AI model')
     parser.add_argument('--mode', '-m',
-                       choices=['auto', 'manual'],
+                       choices=['auto', 'manual', 'builtin'],
                        default='manual',
                        help='Function calling mode (auto or manual, default: manual)')
     parser.add_argument('--model',
@@ -274,6 +311,8 @@ def main():
         local_tool_auto_func_calling_example(openai_model, args.prompt)
     elif args.mode == "manual":
         local_tool_example(openai_model, args.prompt)
+    elif args.mode == "builtin":
+        builtin_tool_example(openai_model, args.prompt)
     else:
         print(f"Unknown mode: {args.mode}. Please choose 'auto' or 'manual'.")
 

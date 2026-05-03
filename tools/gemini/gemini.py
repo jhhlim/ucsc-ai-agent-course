@@ -235,7 +235,8 @@ def local_tool_auto_func_calling_example(model: str, prompt: str = "What's the t
         client = get_client()
         print("✓ Connected to Google GenAI")
 
-        # Create tools
+        # tool list
+        # pass a Python function directly and it will be automatically called and responded by default.
         tool_functions = [get_weather, calculate_sum, get_current_time, get_location]
         
         config = types.GenerateContentConfig(
