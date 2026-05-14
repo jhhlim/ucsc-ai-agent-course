@@ -13,6 +13,10 @@ load_dotenv()
 
 from agents.basic_agent.agent import root_agent
 
+# resource: 
+# - https://adk.dev/tutorials/agent-team/#step-1-your-first-agent-basic-weather-lookup
+# - https://docs.litellm.ai/docs/tutorials/google_adk
+
 async def chat_loop():
     print("Welcome to the Gemini ADK Chat Loop! Type 'exit' to quit.")
     session_service = InMemorySessionService()

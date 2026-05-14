@@ -55,6 +55,9 @@
 - Dependencies listed in `pyproject.toml`
 
 
+## Basic ADK command example
+- adk create sample-agent --model gemini-2.5-flash-lite --api_key $GOOGLE_API_KEY
+
 ### Notes
 - git branch -M main
 - git remote add origin git@github.com:hienluu/ucsc-ai-agent-course.git
