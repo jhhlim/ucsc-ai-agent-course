@@ -8,3 +8,4 @@
 * Compple home work #1
 
 ### Resources
+* [Agent Tools & Interoperability with MCP paper](https://www.kaggle.com/whitepaper-agent-tools-and-interoperability-with-mcp)
