@@ -1,6 +1,6 @@
-# UCSC Extesnion - [Developing AI Agent Applications Course](https://www.ucsc-extension.edu/courses/developing-ai-agent-applications)
+## UCSC Extesnion - [Developing AI Agent Applications Course](https://www.ucsc-extension.edu/courses/developing-ai-agent-applications)
 
-## Syllabus
+### Syllabus
 * Foundation & Architecture
 * Tools & Frameworks
 * Memory & Harness
@@ -8,10 +8,12 @@
 * Multi-agents Systems 
 * Production Deployment
 
-## Session Info.
+### Session Info.
 * 7 sessions: from 05/19 to 06/30
 
-
-
-## Setup Steps
+### Setup Steps
 * see [README.md in src folder](./src/README.md)
+
+### News of the week
+05/18/2026
+* [Google Cloud Rapid Agent Hackathon](https://rapid-agent.devpost.com/)
