@@ -3,10 +3,9 @@
 ### Syllabus
 * Foundation & Architecture
 * Tools & Frameworks
+* Multi-agents Systems 
 * Memory & Harness
 * Evaluation & Observability
-* Multi-agents Systems 
-* Production Deployment
 
 ### Session Info.
 * 7 sessions: from 05/19 to 06/30

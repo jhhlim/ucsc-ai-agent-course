@@ -20,3 +20,5 @@
 * [Google GenAI SDK Notebook](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started.ipynb#scrollTo=eVmFDcYOSNiV)
 * [Build an AI Agent in Python on boot.dev](https://www.boot.dev/courses/build-ai-agent-python)
 * [Youtube video: Guide to Agentic AI – Build a Python Coding Agent with Gemini](https://www.youtube.com/watch?v=Q3Gb7Rjre3U)
+* [Gemini ADK examples](https://github.com/janakiramm/gemini-adk.git)
+* [Agents in Action](https://github.com/traversaal-ai/agents-in-action/tree/main)
