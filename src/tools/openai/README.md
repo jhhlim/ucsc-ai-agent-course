@@ -21,35 +21,37 @@ The examples demonstrate how to use local functions as tools:
 - `get_current_time`: Get the current time
 - `calculate_sum`: Calculate the sum of numbers
 
-### Modes
+### Usage
+
+Run the command from the "src" folder
 
 #### Manual Mode (Default)
 Uses explicit function calling with manual tool execution:
 ```bash
-python -m tools.openai.openai --mode manual --prompt "What's the temperature in London?"
+uv run -m tools.openai.openai --mode manual --prompt "What's the temperature in London?"
 ```
 
 #### Auto Mode
 Uses automatic function calling with OpenAI's auto mode:
 ```bash
-python -m tools.openai.openai --mode auto --prompt "What's the temperature in London?"
+uv run -m tools.openai.openai --mode auto --prompt "What's the temperature in London?"
 ```
 
 ## Usage
 
 ### Basic Example
 ```bash
-python -m tools.openai.openai
+uv run -m tools.openai.openai
 ```
 
 ### Custom Prompt
 ```bash
-python -m tools.openai.openai --prompt "Calculate 5 + 3"
+uv run -m tools.openai.openai --prompt "Calculate 5 + 3"
 ```
 
 ### Specify Model
 ```bash
-python -m tools.openai.openai --model gpt-4 --prompt "What time is it?"
+uv run -m tools.openai.openai --model gpt-4 --prompt "What time is it?"
 ```
 
 ## API Reference

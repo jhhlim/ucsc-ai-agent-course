@@ -13,4 +13,4 @@ wheels/
 .env
 
 # adk session.db
-session.db
+**/.adk/session.db

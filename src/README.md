@@ -7,6 +7,11 @@
    uv sync
    ```
 
+2. **Activate the environment
+   ```bash
+   source .venv/bin/activate
+   ```  
+
 2. **Set up environment variables**:
    ```bash
    cp env.example .env
@@ -18,11 +23,9 @@
    - Create a new API key
    - Add it to your `.env` file
 
-4. **Run a script**:
-   ```bash
-   uv run python tools/gemini/gemini.py
-   ```
-
+## Running examples about tool calling, see the respective README.md file in the sub folder
+* [Claude examples](./tools/claude/README.md)
+* [Gemini examples](./tools/gemini/README.md)
 
 
 ## Project Structure

@@ -1,15 +1,15 @@
 
-
+## Instructions for running agents related examples
 
 ### Usage
-Run the following commands from the gemini-adk folder
+Run the following commands from the <strong>gemini-adk</strong> folder
 
-# Run the basic_agent from command line
+#### Run the basic_agent from command line
 ```bash
 uv run agent_runner.py
 ```
 
-# Run the agents (basic_agent, agent_doubleword) with adk commands
+#### Run the agents (basic_agent, agent_doubleword) with adk commands
 
 With adk web command
 ```bash

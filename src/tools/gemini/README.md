@@ -9,9 +9,7 @@ This folder demonstrates how to use function calling tools with Google's Generat
 - **CLI Mode Support**: Select `manual`, `auto`, or `builtin` invocation modes
 - **Built-in Tool Diagnostics**: Print tool calls, responses, and grounding metadata
 
-
-
-## Usage
+### Usage
 
 Run the main CLI entrypoint from the "src" folder
 
@@ -30,6 +28,12 @@ Example with built-in tools and grounding metadata output:
 uv run -m tools.gemini.gemini --prompt "What's the latitude and longitude of San Jose University?" --mode builtin
 ```
 
+#### To run gemini_agent example
+Go into gemini folder
+
+```bash
+adk run agemini_agent
+```
 
 ## Key Components
 

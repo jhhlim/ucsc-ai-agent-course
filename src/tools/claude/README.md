@@ -14,7 +14,7 @@ This module demonstrates how to use Claude with function calling (tool use) capa
 ### Manual Function Calling
 Claude determines when to call tools and you handle the results:
 
-Run the command from the src folder
+Run the command from the "src" folder
 
 ```bash
 uv run -m tools.claude.claude --mode "manual" --prompt "What is the temperature in London?"
