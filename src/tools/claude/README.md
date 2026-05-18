@@ -4,35 +4,17 @@ This module demonstrates how to use Claude with function calling (tool use) capa
 
 ## Setup
 
-1. **Install dependencies**:
-   ```bash
-   pip install -r ../../requirements.txt
-   # or
-   pip install anthropic
-   ```
-
-2. **Set up environment variables**:
-   ```bash
-   cp ../../env.example .env
-   # Edit .env and add your ANTHROPIC_API_KEY
-   ```
-
-3. **Get an Anthropic API Key**:
+**Get an Anthropic API Key**:
    - Go to [Anthropic Console](https://console.anthropic.com)
    - Create an API key
    - Add it to your `.env` file as `ANTHROPIC_API_KEY`
-
-## Requirements
-
-- Python 3.14+
-- Anthropic Claude API key
-- `anthropic` package (tested with 0.97.0+)
-- Dependencies listed in `../../pyproject.toml`
 
 ## Usage
 
 ### Manual Function Calling
 Claude determines when to call tools and you handle the results:
+
+Run the command from the src folder
 
 ```bash
 uv run -m tools.claude.claude --mode "manual" --prompt "What is the temperature in London?"
