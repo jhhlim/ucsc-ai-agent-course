@@ -16,3 +16,5 @@
 ### News of the week
 05/18/2026
 * [Google Cloud Rapid Agent Hackathon](https://rapid-agent.devpost.com/)
+* [Google I/O - A multi-agent marathon simulation](https://github.com/GoogleCloudPlatform/race-condition)
+  * [youtube video](https://www.youtube.com/watch?v=-FRomcsclxw)
