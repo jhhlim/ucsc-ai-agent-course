@@ -16,15 +16,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DOUBLEWORD_API_KEY = os.getenv("DOUBLEWORD_API_KEY")
+DOUBLEWORD_MODEL = os.getenv("DOUBLEWORD_MODEL")
+DOUBLEWORD_API_URL = os.getenv("DOUBLEWORD_API_URL")
 
+if DOUBLEWORD_API_KEY is None:
+    raise ValueError("DOUBLEWORD_API_KEY is not set in the environment variables.")
+
+
+print(f"DOUBLEWORD_API_KEY: {DOUBLEWORD_API_KEY}")
+print(f"DOUBLEWORD_MODEL: {DOUBLEWORD_MODEL}")
+print(f"DOUBLEWORD_API_URL: {DOUBLEWORD_API_URL}")
 
 litellm = LiteLlm(
-        model="openai/Qwen/Qwen3.6-35B-A3B-FP8",
-        api_base="https://api.doubleword.ai/v1",
+        model=f"{DOUBLEWORD_MODEL}",
+        api_base=f"{DOUBLEWORD_API_URL}",
         api_key=f"{DOUBLEWORD_API_KEY}",
         include_reasoning=False, # Set to False to exclude reasoning steps from the response
 )
-
 
 root_agent = Agent(
     model=litellm,
