@@ -1,4 +1,4 @@
-### Homework #1 - simple agent with using framework
+### Homework #1 - simple agent without using framework
 
 The goal is to understand the foundation of an agent, which is the ReAct loop
 
