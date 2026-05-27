@@ -36,9 +36,11 @@ MAX_AGENT_STEPS = 6
 
 def get_client() -> genai.Client:
     """Build a google-genai client from the GOOGLE_API_KEY env var."""
-    api_key = os.getenv("GOOGLE_API_KEY")
-    if not api_key:
-        raise ValueError("GOOGLE_API_KEY is not set. Add it to your .env file.")
+    api_key = (os.getenv("GOOGLE_API_KEY") or "").strip().strip('"').strip("'")
+    if not api_key or api_key == "<your key>" or not api_key.startswith("AIza"):
+        raise ValueError(
+            "GOOGLE_API_KEY is not set. Add it to src/.env (see env.example)."
+        )
     return genai.Client(api_key=api_key)
 
 
@@ -100,20 +102,67 @@ def run_agent(client: genai.Client, model: str, user_prompt: str) -> str:
     """
     tools_by_name = {fn.__name__: fn for fn in AVAILABLE_TOOLS}
 
-    # TODO: build initial `contents` list from user_prompt
-    contents: list[types.Content] = []
+    contents: list[types.Content] = [
+        types.Content(
+            role="user",
+            parts=[types.Part(text=user_prompt)],
+        )
+    ]
 
-    # TODO: build the GenerateContentConfig (see docstring above)
-    config = types.GenerateContentConfig()
+    config = types.GenerateContentConfig(
+        tools=AVAILABLE_TOOLS,
+        tool_config=types.ToolConfig(
+            function_calling_config=types.FunctionCallingConfig(mode="AUTO")
+        ),
+        automatic_function_calling=types.AutomaticFunctionCallingConfig(
+            disable=True
+        ),
+    )
 
     for step in range(MAX_AGENT_STEPS):
         print(f"\n--- agent step {step + 1} ---")
 
-        # TODO: call client.models.generate_content(...) and inspect the response.
-        # If the model emitted function_call parts, run each one through
-        # execute_tool_call() and feed the responses back into `contents`.
-        # Otherwise, return response.text as the final answer.
-        raise NotImplementedError("Implement the agent loop")
+        response = client.models.generate_content(
+            model=model,
+            contents=contents,
+            config=config,
+        )
+
+        if not response.candidates or not response.candidates[0].content:
+            return "No response from model."
+
+        model_content = response.candidates[0].content
+        parts = model_content.parts or []
+
+        function_calls = [
+            part.function_call for part in parts if part.function_call is not None
+        ]
+
+        if function_calls:
+            contents.append(model_content)
+
+            response_parts: list[types.Part] = []
+            for function_call in function_calls:
+                result = execute_tool_call(function_call, tools_by_name)
+                response_parts.append(
+                    types.Part(
+                        function_response=types.FunctionResponse(
+                            id=function_call.id,
+                            name=function_call.name,
+                            response={"result": result},
+                        )
+                    )
+                )
+
+            contents.append(types.Content(role="user", parts=response_parts))
+            continue
+
+        if response.text:
+            return response.text.strip()
+
+        text_parts = [part.text for part in parts if part.text]
+        if text_parts:
+            return "\n".join(text_parts).strip()
 
     return "Agent stopped: hit MAX_AGENT_STEPS without producing a final answer."
 
@@ -146,7 +195,8 @@ def repl(client: genai.Client, model: str) -> None:
 
 
 def main() -> None:
-    load_dotenv()
+    env_path = os.path.join(os.path.dirname(__file__), "..", ".env")
+    load_dotenv(env_path)
     model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     client = get_client()
     repl(client, model)

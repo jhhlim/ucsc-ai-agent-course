@@ -4,9 +4,17 @@ Tool functions for the HW1 agent.
 Each tool is a regular Python function with type hints and a docstring.
 The google-genai SDK will inspect these to generate the tool schema that
 the model sees when deciding which tool to call.
-
-TODO (students): implement the two tool functions below.
 """
+
+# Case-insensitive lookup table for a few cities.
+_WEATHER_BY_CITY: dict[str, str] = {
+    "tokyo": "Partly cloudy, 18°C (64°F)",
+    "london": "Rainy, 12°C (54°F)",
+    "new york": "Sunny, 22°C (72°F)",
+    "san francisco": "Foggy, 16°C (61°F)",
+    "paris": "Overcast, 14°C (57°F)",
+    "sydney": "Clear, 24°C (75°F)",
+}
 
 
 def get_weather(city: str) -> str:
@@ -18,11 +26,14 @@ def get_weather(city: str) -> str:
     Returns:
         str: A short, human-readable description of the weather.
     """
-    # TODO (students):
-    # For HW1 you can return a hard-coded weather string per city
-    # (e.g. use a small dict like {"New York": "Sunny, 72°F", ...}).
-    # Stretch goal: call a real weather API instead of returning a stub.
-    raise NotImplementedError("Implement get_weather")
+    key = city.strip().lower()
+    if key in _WEATHER_BY_CITY:
+        return f"{city.strip()}: {_WEATHER_BY_CITY[key]}"
+
+    return (
+        f"Weather data not available for {city}. "
+        f"Known cities: {', '.join(c.title() for c in _WEATHER_BY_CITY)}."
+    )
 
 
 def add_numbers(a: float, b: float) -> float:
@@ -35,14 +46,10 @@ def add_numbers(a: float, b: float) -> float:
     Returns:
         float: The sum of a and b.
     """
-    # TODO (students): return the sum of a and b.
-    raise NotImplementedError("Implement add_numbers")
+    return a + b
 
 
 # Registry of tools the agent is allowed to call.
-# The google-genai SDK can take Python callables directly in the
-# `tools=[...]` field of GenerateContentConfig — keep this list in sync
-# with whatever the agent should expose.
 AVAILABLE_TOOLS = [
     get_weather,
     add_numbers,

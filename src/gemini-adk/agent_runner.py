@@ -1,5 +1,4 @@
 import asyncio
-from dotenv import load_dotenv
 import json
 
 from rich import print as rprint
@@ -9,7 +8,10 @@ from google.genai.types import Content, Part
 from google.adk.runners import Runner
 from google.adk.sessions  import InMemorySessionService
 
-load_dotenv()
+from env_config import load_project_env, require_google_api_key
+
+load_project_env()
+require_google_api_key()
 
 from agents.basic_agent.agent import root_agent
 

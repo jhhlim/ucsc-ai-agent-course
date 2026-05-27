@@ -12,8 +12,10 @@ warnings.filterwarnings("ignore")
 import logging
 logging.basicConfig(level=logging.ERROR)
 
-from dotenv import load_dotenv
-load_dotenv()
+from env_config import load_project_env, require_google_api_key
+
+load_project_env()
+require_google_api_key()
 
 
 DOUBLEWORD_API_KEY = os.getenv("DOUBLEWORD_API_KEY")
