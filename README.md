@@ -14,6 +14,9 @@
 * see [README.md in src folder](./src/README.md)
 
 ### News of the week
+06/08/2026
+* [HolmesGPT — The CNCF SRE Agent](https://github.com/HolmesGPT/holmesgpt)
+
 05/18/2026
 * [Build with Gemini XPRIZE - $2M Prize](https://www.geminixprize.com/)
 * [Google Cloud Rapid Agent Hackathon](https://rapid-agent.devpost.com/)
