@@ -14,3 +14,4 @@
   * [github repo](https://github.com/alejandro-ao/open-deep-research-w-firecrawl)
 * [ADK Agent examples - Pythons](https://github.com/google/adk-samples/tree/main/python/agents)
 * [LangChain - Deepagent opensource](https://github.com/langchain-ai/deepagents)
+* [AgentOps: Human Approval Workflow Example](https://github.com/AgentOps-AI/agentops/blob/main/examples/google_adk/human_approval.ipynb)
