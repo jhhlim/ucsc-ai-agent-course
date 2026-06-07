@@ -3,6 +3,7 @@
 
 ### Resources
 * [ADK Examples - master list](https://github.com/google/adk-samples)
+  * [Short movie agents](https://github.com/google/adk-samples/tree/main/python/agents/short-movie-agents)
 * [ADK - Tools and Integrations for Agents](https://adk.dev/integrations/)
   * Good one to integrate with your agents
 * [ADK Day Trip Planning Agent Examples](https://github.com/cuppibla/adk_tutorial/tree/main)
