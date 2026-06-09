@@ -22,6 +22,7 @@
 * [Anthropic: When AI builds itself](https://www.anthropic.com/institute/recursive-self-improvement)
 * [Google’s agentic RAG framework](https://research.google/blog/unlocking-dependable-responses-with-gemini-enterprise-agent-platforms-agentic-rag/)
   * [A multi-agentic example]
+* [Code with Claude Workshop](https://github.com/anthropics/cwc-workshops)
 
 05/18/2026
 * [Build with Gemini XPRIZE - $2M Prize](https://www.geminixprize.com/)
