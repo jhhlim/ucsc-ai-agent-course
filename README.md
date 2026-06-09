@@ -16,6 +16,7 @@
 ### News of the week
 06/08/2026
 * [Anthropic - Building AI agents for the enterprise](https://claude.com/blog/building-ai-agents-for-the-enterprise)
+ * [pdf](https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/69f3af1f0b8ebe5cde42fcda_Claude-Building-AI-Agents-in-the-Enterpise-04302026_v2%20(1).pdf)
 * [HolmesGPT — The CNCF SRE Agent](https://github.com/HolmesGPT/holmesgpt)
 * [Meta: Business Agent](https://about.fb.com/news/2026/06/meta-business-agent/)
 * [Anthropic: When AI builds itself](https://www.anthropic.com/institute/recursive-self-improvement)
