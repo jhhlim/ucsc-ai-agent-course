@@ -12,6 +12,8 @@ warnings.filterwarnings("ignore")
 import logging
 logging.basicConfig(level=logging.ERROR)
 
+import _adk_bootstrap  # noqa: F401 — adds gemini-adk to sys.path for adk web/run
+
 from env_config import load_project_env, require_google_api_key
 
 load_project_env()

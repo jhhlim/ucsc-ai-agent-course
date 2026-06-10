@@ -1,3 +1,5 @@
+import _adk_bootstrap  # noqa: F401 — adds gemini-adk to sys.path for adk web/run
+
 from google.adk.agents.llm_agent import LlmAgent
 from google.adk.tools import google_search
 
