@@ -16,3 +16,4 @@
 * [ADK Agent examples - Pythons](https://github.com/google/adk-samples/tree/main/python/agents)
 * [LangChain - Deepagent opensource](https://github.com/langchain-ai/deepagents)
 * [AgentOps: Human Approval Workflow Example](https://github.com/AgentOps-AI/agentops/blob/main/examples/google_adk/human_approval.ipynb)
+* [ADK Blogger Examples (Sequential, Loop, Critique) - with MCP](https://github.com/smithakolan/awesome-ai-agents/tree/main)
