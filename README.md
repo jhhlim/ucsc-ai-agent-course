@@ -15,7 +15,7 @@
 
 ### News of the week
 06/15/2026
-* [https://www.kaggle.com/competitions/5-day-ai-agents-intensive-vibecoding-course-with-google](https://www.kaggle.com/competitions/5-day-ai-agents-intensive-vibecoding-course-with-google)
+* [5-Day AI Agents: Intensive Vibe Coding Course With Google](https://www.kaggle.com/competitions/5-day-ai-agents-intensive-vibecoding-course-with-google)
 * [Databricks - Introducing Omnigent: A Meta-Harness to Combine, Control and Share Your Agents](https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents)
  * [github repo](https://github.com/omnigent-ai/omnigent)
 * [Claude Fable 5 and Claude Mythos 5](https://www.anthropic.com/news/claude-fable-5-mythos-5)
