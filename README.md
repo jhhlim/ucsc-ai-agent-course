@@ -38,3 +38,4 @@
     * [a walk-through](https://developers.google.com/solutions/learn/race-condition)
   * [Gemini Spark](https://gemini.google/overview/agent/spark/)
 * [This is AGI: Sequoia AI Ascent 2026 Keynote](https://www.youtube.com/watch?v=LRo33rnv6rQ)
+* [https://aiengineeringfromscratch.com/](https://aiengineeringfromscratch.com/)
