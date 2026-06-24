@@ -276,17 +276,30 @@ Educational estimates only — not financial advice, not a loan offer, and not a
 
 ## Sample outputs
 
-Terminal screenshots for all README sample prompts:
+### CLI (`adk run`) — terminal screenshots
 
-- [`HW3_Sample_Prompt_Outputs.md`](HW3_Sample_Prompt_Outputs.md) (with PNG screenshots)
-- Screenshots in [`screenshots/`](screenshots/)
+- [`HW3_Sample_Prompt_Outputs.md`](HW3_Sample_Prompt_Outputs.md)
+- [`screenshots/`](screenshots/)
 
-Regenerate locally:
+### Web UI (`adk web`) — Dev UI screenshots
+
+- [`HW3_Web_ADK_Sample_Outputs.md`](HW3_Web_ADK_Sample_Outputs.md)
+- [`web_screenshots/`](web_screenshots/) (chat + trace per prompt)
+
+Regenerate CLI screenshots:
 
 ```bash
-# Refresh agent responses (optional)
 cd src && uv run python ../hw3/collect_sample_outputs.py --json-only
-
-# Build terminal PNGs + markdown
 cd src && uv run --with pillow python ../hw3/generate_sample_outputs_md.py
+```
+
+Regenerate Web ADK screenshots:
+
+```bash
+# Terminal 1
+cd src && uv run adk web ../hw3/adk_agents --port 8000
+
+# Terminal 2
+cd src && uv run --with playwright python -m playwright install chromium
+cd src && uv run --with playwright python ../hw3/capture_web_adk_screenshots.py
 ```
