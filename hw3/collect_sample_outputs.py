@@ -190,10 +190,21 @@ def write_docx(results: list[dict], path: Path) -> None:
 
 
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--json-only", action="store_true", help="Only write JSON, skip DOCX")
+    args = parser.parse_args()
+
     out_json = _HW3 / "sample_prompt_outputs.json"
-    out_docx = _HW3 / "HW3_Sample_Prompt_Outputs.docx"
 
     results = asyncio.run(main())
     out_json.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
-    write_docx(results, out_docx)
-    print(f"\nWrote {out_docx} and {out_json}")
+    print(f"\nWrote {out_json}")
+
+    if not args.json_only:
+        try:
+            write_docx(results, _HW3 / "HW3_Sample_Prompt_Outputs.docx")
+            print(f"Wrote {_HW3 / 'HW3_Sample_Prompt_Outputs.docx'}")
+        except ImportError:
+            print("Skipping DOCX (python-docx not installed)")

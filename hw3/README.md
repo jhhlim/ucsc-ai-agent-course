@@ -276,12 +276,17 @@ Educational estimates only — not financial advice, not a loan offer, and not a
 
 ## Sample outputs
 
-Pre-run agent responses for all README sample prompts:
+Terminal screenshots for all README sample prompts:
 
-- [`HW3_Sample_Prompt_Outputs.docx`](HW3_Sample_Prompt_Outputs.docx)
+- [`HW3_Sample_Prompt_Outputs.md`](HW3_Sample_Prompt_Outputs.md) (with PNG screenshots)
+- Screenshots in [`screenshots/`](screenshots/)
 
 Regenerate locally:
 
 ```bash
-cd src && uv run --with python-docx python ../hw3/collect_sample_outputs.py
+# Refresh agent responses (optional)
+cd src && uv run python ../hw3/collect_sample_outputs.py --json-only
+
+# Build terminal PNGs + markdown
+cd src && uv run --with pillow python ../hw3/generate_sample_outputs_md.py
 ```
