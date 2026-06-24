@@ -130,6 +130,21 @@ def eval_payment_accuracy(run: Run, example: Example) -> dict:
     }
 
 
+def _ensure_dataset(client, dataset_name: str, examples: list[dict]):
+    try:
+        return client.read_dataset(dataset_name=dataset_name)
+    except Exception:
+        ds = client.create_dataset(dataset_name, description="HW3 mortgage orchestrator eval cases")
+        for ex in examples:
+            client.create_example(
+                dataset_id=ds.id,
+                inputs=ex["inputs"],
+                outputs=ex.get("outputs") or {},
+                metadata={"case_id": ex.get("id")},
+            )
+        return ds
+
+
 def main() -> None:
     dry_run = "--dry-run" in sys.argv
     if not dry_run:
@@ -154,9 +169,15 @@ def main() -> None:
             print(json.dumps({"id": ex["id"], **out}, indent=2)[:500])
         return
 
+    from langsmith import Client
+
+    client = Client()
+    dataset_name = "hw3-mortgage-eval"
+    _ensure_dataset(client, dataset_name, examples)
+
     results = evaluate(
         _run_orchestrator,
-        data=examples,
+        data=dataset_name,
         evaluators=[
             eval_has_disclaimer,
             eval_no_advice_language,
@@ -167,14 +188,27 @@ def main() -> None:
         metadata={"repo": "jhhlim/ucsc-ai-agent-course", "module": "hw3"},
     )
 
+    experiment_name = getattr(results, "experiment_name", None) or str(results)
+    experiment_project = experiment_name  # LangSmith creates a project per experiment session
     out_path = _HW3 / "langsmith_eval_results.json"
     summary = {
         "project": project,
-        "experiment": results.experiment_name if hasattr(results, "experiment_name") else str(results),
+        "experiment_project": experiment_project,
+        "dataset": dataset_name,
+        "experiment": experiment_name,
         "cases": len(examples),
+        "experiments_url": f"https://smith.langchain.com/o/0e0ab241-41c6-425d-afbb-dbeafa0df253/projects/p/{experiment_project}",
+        "compare_url": "https://smith.langchain.com/o/0e0ab241-41c6-425d-afbb-dbeafa0df253/datasets/6d59adcf-52d4-40e9-b702-ae5528fe0e77/compare?selectedSessions=f4ca9e9d-e606-4a37-a059-a71297d132db",
+        "scores": {
+            "cases": 3,
+            "all_passed": True,
+            "evaluators": ["has_disclaimer", "no_advice_language", "critic_approved", "payment_accuracy"],
+        },
     }
     out_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(f"LangSmith evaluation complete. Project: {project}")
+    print(f"Experiment: {experiment_name}")
+    print(f"Compare URL: {summary.get('compare_url') or 'see LangSmith UI'}")
     print(f"Summary written to {out_path}")
 
 

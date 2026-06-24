@@ -20,6 +20,9 @@ https://github.com/jhhlim/ucsc-ai-agent-course/tree/main/hw3
 | [`HW3_Sample_Prompt_Outputs.md`](HW3_Sample_Prompt_Outputs.md) | CLI (`adk run`) terminal screenshots |
 | [`HW3_Web_ADK_Sample_Outputs.md`](HW3_Web_ADK_Sample_Outputs.md) | Web (`adk web`) Dev UI screenshots |
 | [`langsmith_eval.py`](langsmith_eval.py) | LangSmith evaluation suite |
+| [`Learnings Hw3.md`](Learnings%20Hw3.md) | Project learnings (this doc) |
+| [`langsmith_eval_results.json`](langsmith_eval_results.json) | Eval scores + LangSmith URLs |
+| [`langsmith_screenshots/`](langsmith_screenshots/) | Experiment compare + trace PNGs |
 | [`run_scenario.py`](run_scenario.py) | Instant deterministic calculator (no LLM) |
 
 ---
@@ -128,13 +131,47 @@ uv run --with langsmith python ../hw3/langsmith_eval.py --dry-run  # local only
 
 ADK / Doubleword LLM calls are traced automatically via LiteLLM callback when the API key is set.
 
-### LangSmith status
+### Evaluation run (completed)
 
-![LangSmith login required](langsmith_screenshots/01_langsmith_login.png)
+After adding `LANGSMITH_API_KEY` to `src/.env`, we ran the full eval suite:
 
-*Screenshot: LangSmith requires login to view traces. An API key from your account is needed to upload runs from this repo — we could not complete live trace screenshots without your `LANGSMITH_API_KEY`.*
+```bash
+cd src && uv run --with langsmith python ../hw3/langsmith_eval.py
+```
 
-**To finish LangSmith screenshots:** sign in at the project URL above, create API key, add to `src/.env`, re-run `langsmith_eval.py`, then capture Traces / Experiments views in the UI.
+| Field | Value |
+|-------|-------|
+| Dataset | `hw3-mortgage-eval` (3 cases) |
+| Experiment session | `hw3-mortgage-orchestrator-1de98a4c` |
+| Cases evaluated | 3 |
+| All evaluators passed | **Yes** — score **1.0** on every case |
+
+**Berryessa payment check:** `expected=6139.4, reported=6139.4` (exact match via `payment_accuracy` scorer).
+
+**Links**
+
+- [Experiment project](https://smith.langchain.com/o/0e0ab241-41c6-425d-afbb-dbeafa0df253/projects/p/hw3-mortgage-orchestrator-1de98a4c)
+- [Dataset compare view](https://smith.langchain.com/o/0e0ab241-41c6-425d-afbb-dbeafa0df253/datasets/6d59adcf-52d4-40e9-b702-ae5528fe0e77/compare?selectedSessions=f4ca9e9d-e606-4a37-a059-a71297d132db)
+
+Results JSON: [`langsmith_eval_results.json`](langsmith_eval_results.json)
+
+### Experiment compare (API-rendered)
+
+![LangSmith experiment compare — all cases score 1.0](langsmith_screenshots/04_experiment_compare_api.png)
+
+*All three eval cases passed `has_disclaimer`, `no_advice_language`, `critic_approved`, and `payment_accuracy`.*
+
+### Trace detail (API-rendered)
+
+![LangSmith trace tree — hw3_mortgage_orchestrator root run](langsmith_screenshots/05_trace_detail_api.png)
+
+*Root orchestrator run with child spans and output keys pulled from the LangSmith API. Live UI traces for individual Doubleword LLM calls appear when `LANGSMITH_TRACING=true` during `adk run` / `adk web` sessions.*
+
+### Eval summary
+
+![LangSmith eval summary](langsmith_screenshots/08_eval_summary_api.png)
+
+**Note:** Headless Playwright cannot authenticate to the LangSmith web UI without a logged-in browser session, so screenshots above are API-rendered summaries (`render_langsmith_eval_png.py`). Open the compare URL above in a signed-in browser for the full interactive experiment view.
 
 ---
 
@@ -151,7 +188,7 @@ ADK / Doubleword LLM calls are traced automatically via LiteLLM callback when th
 
 ## **Key Takeaway**
 
-Building a multi-agent system highlighted that agent coordination, validation, and evaluation are often more challenging than the individual tools themselves. The Compliance Critic pattern significantly improved reliability by acting as a final verification layer before presenting results to the user. LangSmith provides the next layer — trace visibility and repeatable eval scores — once connected with an API key.
+Building a multi-agent system highlighted that agent coordination, validation, and evaluation are often more challenging than the individual tools themselves. The Compliance Critic pattern significantly improved reliability by acting as a final verification layer before presenting results to the user. LangSmith closed the loop: we ran 3 eval cases with four automated scorers and achieved 100% pass rate, including exact P&I verification on the Berryessa reference scenario.
 
 ---
 

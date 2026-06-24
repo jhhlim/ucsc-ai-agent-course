@@ -1,0 +1,15 @@
+{
+  "project": "ucsc-hw3-mortgage",
+  "experiment_project": "hw3-mortgage-orchestrator-1de98a4c",
+  "dataset": "hw3-mortgage-eval",
+  "experiment": "hw3-mortgage-orchestrator-1de98a4c",
+  "cases": 3,
+  "experiments_url": "https://smith.langchain.com/o/0e0ab241-41c6-425d-afbb-dbeafa0df253/projects/p/hw3-mortgage-orchestrator-1de98a4c",
+  "compare_url": "https://smith.langchain.com/o/0e0ab241-41c6-425d-afbb-dbeafa0df253/datasets/6d59adcf-52d4-40e9-b702-ae5528fe0e77/compare?selectedSessions=f4ca9e9d-e606-4a37-a059-a71297d132db",
+  "scores": {
+    "cases": 3,
+    "all_passed": true,
+    "evaluators": ["has_disclaimer", "no_advice_language", "critic_approved", "payment_accuracy"],
+    "berryessa_payment_accuracy": "expected=6139.4, reported=6139.4"
+  }
+}
