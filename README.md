@@ -16,6 +16,10 @@
 ### News of the week
 06/22/2026
 * [Microsoft's Agents hub](https://learn.microsoft.com/en-us/agents/)
+* [Loop Engineering]
+  * [Loop Engineering: Why Everyone is Talking About Agentic Loops?](https://www.youtube.com/watch?v=7BrxIBkX3mg)
+  * [Only the best are using them...](https://www.youtube.com/watch?v=dMrm2jAyrKM)
+  * [The Art of Loop Engineering](https://www.langchain.com/blog/the-art-of-loop-engineering)
 
   
 06/15/2026
