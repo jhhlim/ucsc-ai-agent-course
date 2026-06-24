@@ -14,6 +14,14 @@ _SRC_ENV = Path(__file__).resolve().parent.parent.parent / "src" / ".env"
 load_dotenv(_SRC_ENV)
 load_dotenv()
 
+# Enable LangSmith LiteLLM callbacks when API key is configured
+try:
+    from mortgage_agents.langsmith_tracing import configure_langsmith_tracing
+
+    configure_langsmith_tracing()
+except ImportError:
+    pass
+
 
 def get_doubleword_litellm() -> LiteLlm:
     """Build a LiteLlm client pointed at the Doubleword OpenAI-compatible API."""

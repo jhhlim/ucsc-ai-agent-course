@@ -281,10 +281,29 @@ Educational estimates only — not financial advice, not a loan offer, and not a
 - [`HW3_Sample_Prompt_Outputs.md`](HW3_Sample_Prompt_Outputs.md)
 - [`screenshots/`](screenshots/)
 
+## Sample outputs
+
+### CLI (`adk run`) — terminal screenshots
+
+- [`HW3_Sample_Prompt_Outputs.md`](HW3_Sample_Prompt_Outputs.md)
+- [`screenshots/`](screenshots/)
+
 ### Web UI (`adk web`) — Dev UI screenshots
 
 - [`HW3_Web_ADK_Sample_Outputs.md`](HW3_Web_ADK_Sample_Outputs.md)
-- [`web_screenshots/`](web_screenshots/) (chat + trace per prompt)
+- [`web_screenshots/`](web_screenshots/)
+
+### LangSmith tracing & evaluation
+
+- [`Learnings Hw3.md`](Learnings%20Hw3.md) — project learnings + LangSmith setup
+- [`langsmith_eval.py`](langsmith_eval.py) — automated evaluators
+- [`langsmith_screenshots/`](langsmith_screenshots/)
+
+Add `LANGSMITH_API_KEY` to `src/.env` (see `src/env.example`), then:
+
+```bash
+cd src && uv run --with langsmith python ../hw3/langsmith_eval.py
+```
 
 Regenerate CLI screenshots:
 
