@@ -273,3 +273,15 @@ hw3/
 ## Disclaimer
 
 Educational estimates only — not financial advice, not a loan offer, and not an underwriting decision.
+
+## Sample outputs
+
+Pre-run agent responses for all README sample prompts:
+
+- [`HW3_Sample_Prompt_Outputs.docx`](HW3_Sample_Prompt_Outputs.docx)
+
+Regenerate locally:
+
+```bash
+cd src && uv run --with python-docx python ../hw3/collect_sample_outputs.py
+```
