@@ -105,7 +105,6 @@ def main() -> None:
     project = meta["experiment_project"]
     render_compare_table(_SHOTS / "04_experiment_compare_api.png", project)
     render_trace_tree(_SHOTS / "05_trace_detail_api.png", project)
-    render_compare_table(_SHOTS / "08_eval_summary_api.png", project)  # refresh
 
 
 if __name__ == "__main__":
