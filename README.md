@@ -14,6 +14,21 @@
 * see [README.md in src folder](./src/README.md)
 
 ### News of the week
+06/22/2026
+* [Microsoft's Agents hub](https://learn.microsoft.com/en-us/agents/)
+* [Loop Engineering]
+  * [Loop Engineering: Why Everyone is Talking About Agentic Loops?](https://www.youtube.com/watch?v=7BrxIBkX3mg)
+  * [Only the best are using them...](https://www.youtube.com/watch?v=dMrm2jAyrKM)
+  * [The Art of Loop Engineering](https://www.langchain.com/blog/the-art-of-loop-engineering)
+
+  
+06/15/2026
+* [5-Day AI Agents Intensive Course](https://www.kaggle.com/learn-guide/5-day-agents)
+* [5-Day AI Agents: Intensive Vibe Coding Course With Google](https://www.kaggle.com/competitions/5-day-ai-agents-intensive-vibecoding-course-with-google)
+* [Databricks - Introducing Omnigent: A Meta-Harness to Combine, Control and Share Your Agents](https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents)
+  * [github repo](https://github.com/omnigent-ai/omnigent)
+* [Claude Fable 5 and Claude Mythos 5](https://www.anthropic.com/news/claude-fable-5-mythos-5)
+
 06/08/2026
 * [Anthropic - Building AI agents for the enterprise](https://claude.com/blog/building-ai-agents-for-the-enterprise)
  * [pdf](https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/69f3af1f0b8ebe5cde42fcda_Claude-Building-AI-Agents-in-the-Enterpise-04302026_v2%20(1).pdf)
@@ -33,3 +48,4 @@
     * [a walk-through](https://developers.google.com/solutions/learn/race-condition)
   * [Gemini Spark](https://gemini.google/overview/agent/spark/)
 * [This is AGI: Sequoia AI Ascent 2026 Keynote](https://www.youtube.com/watch?v=LRo33rnv6rQ)
+* [https://aiengineeringfromscratch.com/](https://aiengineeringfromscratch.com/)
